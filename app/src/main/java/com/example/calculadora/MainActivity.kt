@@ -5,9 +5,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.calculadora.databinding.ActivityMainBinding
 import net.objecthunter.exp4j.ExpressionBuilder
-import kotlin.Double.Companion.NaN
-import kotlin.Double.Companion.POSITIVE_INFINITY
-import kotlin.Double.Companion.NEGATIVE_INFINITY
+import java.math.BigDecimal
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -57,7 +57,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.comma.setOnClickListener {
-            binding.visor.text = "${binding.visor.text}."
+            val text = binding.visor.text.toString()
+
+            val lastNumber = text.split('+', '-', '×', 'x', 'X', '÷', '/').lastOrNull() ?: ""
+
+            if (!lastNumber.contains(",") && lastNumber.isNotEmpty()) {
+                binding.visor.append(",")
+            }
         }
 
         binding.plus.setOnClickListener {
@@ -115,11 +121,10 @@ class MainActivity : AppCompatActivity() {
         binding.equals.setOnClickListener {
             val expr = binding.visor.text.toString()
             val result = evaluateExpression(expr)
-            if (!result.isNaN()) {
-                binding.visor.text = result.toString()
+            if (result.isFinite()) {
+                binding.visor.text = formatResult(result)
             }
         }
-
     }
 }
 private fun MainActivity.evaluateExpression(expression: String): Double {
@@ -169,4 +174,17 @@ fun hasOuterParens(s: String): Boolean {
         if (depth == 0 && i < s.lastIndex) return false
     }
     return depth == 0
+}
+private fun MainActivity.formatResult(value: Double): String {
+    if (!value.isFinite()) return "Erro"
+
+    val bd = BigDecimal(value).setScale(12, RoundingMode.HALF_UP).stripTrailingZeros()
+    var s = bd.toPlainString()
+
+    val maxLen = 14
+    if (s.length > maxLen) {
+        s = DecimalFormat("0.########E0").format(value)
+    }
+
+    return s.replace('.', ',')
 }

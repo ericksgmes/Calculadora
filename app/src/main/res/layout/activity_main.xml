@@ -23,7 +23,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="3+4" />
+            android:maxLines="1"
+            android:ellipsize="end"
+            app:autoSizeTextType="uniform"
+            app:autoSizeMinTextSize="16sp"
+            app:autoSizeMaxTextSize="72sp"
+            app:autoSizeStepGranularity="2sp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
