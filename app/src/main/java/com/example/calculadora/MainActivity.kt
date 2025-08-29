@@ -1,10 +1,13 @@
 package com.example.calculadora
 
-import android.annotation.SuppressLint
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.calculadora.databinding.ActivityMainBinding
 import net.objecthunter.exp4j.ExpressionBuilder
+import kotlin.Double.Companion.NaN
+import kotlin.Double.Companion.POSITIVE_INFINITY
+import kotlin.Double.Companion.NEGATIVE_INFINITY
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -12,8 +15,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val equalsButton = binding.equals
 
         binding.one.setOnClickListener {
             binding.visor.text = "${binding.visor.text}1"
@@ -111,30 +112,49 @@ class MainActivity : AppCompatActivity() {
             binding.visor.text = t
         }
 
-        equalsButton.setOnClickListener {
-            val expression = binding.visor.text.toString()
-            binding.visor.text = evaluateExpression(expression).toString()
+        binding.equals.setOnClickListener {
+            val expr = binding.visor.text.toString()
+            val result = evaluateExpression(expr)
+            if (!result.isNaN()) {
+                binding.visor.text = result.toString()
+            }
         }
 
     }
 }
-
-private fun evaluateExpression(expression: String): Double {
-    return try {
-        var expr = expression
-            .replace('×', '*')
+private fun MainActivity.evaluateExpression(expression: String): Double {
+    try {
+        var expr = expression.trim()
+            .replace('x', '*')
+            .replace('X', '*')
             .replace('÷', '/')
             .replace(',', '.')
+
         expr = Regex("""(\d+(\.\d+)?)%""").replace(expr) { m ->
             "(${m.groupValues[1]}/100)"
         }
 
-        expr = expr.replace("--", "+")
-
         val result = ExpressionBuilder(expr).build().evaluate()
-        result
+
+        if (result.isInfinite()) {
+            Toast.makeText(this, "Erro: divisão por zero", Toast.LENGTH_SHORT).show()
+            return Double.NaN
+        }
+        if (result.isNaN()) {
+            Toast.makeText(this, "Expressão inválida", Toast.LENGTH_SHORT).show()
+            return Double.NaN
+        }
+
+        return result
+    } catch (e: ArithmeticException) {
+        Toast.makeText(this, "Erro: divisão por zero", Toast.LENGTH_SHORT).show()
+        return Double.NaN
+    } catch (e: IllegalArgumentException) {
+        Toast.makeText(this, "Expressão inválida", Toast.LENGTH_SHORT).show()
+        return Double.NaN
     } catch (_: Exception) {
-        Double.NaN
+        Toast.makeText(this, "Expressão inválida", Toast.LENGTH_SHORT).show()
+        return Double.NaN
     }
 }
 
