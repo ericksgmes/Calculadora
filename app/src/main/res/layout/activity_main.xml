@@ -39,13 +39,16 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatButton
+            <ImageButton
                 android:id="@+id/backspace"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/ic_backspace"
-                android:textSize="20sp" />
+                android:background="@color/purple"
+                android:src="@drawable/ic_backspace"
+                android:scaleType="centerInside"
+                android:contentDescription="@string/backspace"
+                app:tint="@color/white" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/ce"
@@ -125,6 +128,58 @@
                 android:textColor="@color/white"
                 android:textSize="20sp" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/four"
+                android:text="@string/_4"
+                android:background="@color/purple_light"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/five"
+                android:text="@string/_5"
+                android:background="@color/purple_light"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/six"
+                android:text="@string/_6"
+                android:background="@color/purple_light"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/minus"
+                android:text="@string/minus"
+                android:background="@color/purple"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                />
+        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>
