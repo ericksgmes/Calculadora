@@ -3,4 +3,9 @@
     <string name="ce">ce</string>
     <string name="percent">percent</string>
     <string name="forward_slash">forward_slash</string>
+    <string name="_7">7</string>
+    <string name="_8">8</string>
+    <string name="_9">9</string>
+    <string name="x">X</string>
+    <string name="slash">/</string>
 </resources>

@@ -13,16 +13,17 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2">
+
         <TextView
             android:id="@+id/visor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="60sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:textSize="60sp"
-            tools:text="3+4"/>
+            tools:text="3+4" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
@@ -30,11 +31,12 @@
         android:layout_height="0dp"
         android:layout_weight="5"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -47,36 +49,81 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/ce"
-                android:text="@string/ce"
-                android:background="@color/purple"
-                android:textColor="@color/white"
-                android:textSize="20sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                />
+                android:background="@color/purple"
+                android:text="@string/ce"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/percent"
-                android:text="@string/percent"
-                android:background="@color/purple"
-                android:textColor="@color/white"
-                android:textSize="20sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                />
+                android:background="@color/purple"
+                android:text="@string/percent"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/forward_slash"
-                android:text="@string/forward_slash"
-                android:background="@color/purple"
-                android:textColor="@color/white"
-                android:textSize="20sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                />
+                android:background="@color/purple"
+                android:text="@string/slash"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/seven"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/purple_light"
+                android:text="@string/_7"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/eight"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/purple_light"
+                android:text="@string/_8"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/nine"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/purple_light"
+                android:text="@string/_9"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/times"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:background="@color/purple"
+                android:text="@string/x"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
         </LinearLayout>
     </LinearLayout>
 
